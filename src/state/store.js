@@ -1,18 +1,7 @@
-import {createStore, combineReducers, applyMiddleware } from "redux";
-import { thunk } from "redux-thunk";
 
-const reducer = combineReducers({
+import {createStore} from "redux";
+import todoReducer from "./reducers/reducers";
 
-});
-
-const initialState = {};
-
-const middleware = [thunk];
-
-const store = createStore(
-    reducer,
-    initialState,
-    applyMiddleware(...middleware)
-);
+const store = createStore(todoReducer);
 
 export default store;
