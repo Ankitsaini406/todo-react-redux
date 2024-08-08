@@ -1,14 +1,16 @@
 
 import { useState } from "react";
 import "../styles/todo.css";
-import { BsPlus } from "react-icons/bs";
+import { BsPlus, BsSearch } from "react-icons/bs";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../state/actions/actions"
+import { addTodo, updateSearchTerm } from "../state/actions/actions"
+import FilterButton from "./filterbutton";
 
 function Todo() {
 
     const dispatch = useDispatch();
     const [newTodoText, setNewTodoText] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
 
     const handleAddTodo = (text) => {
         dispatch(addTodo(text));
@@ -19,6 +21,11 @@ function Todo() {
             handleAddTodo(newTodoText.trim());
             setNewTodoText("");
         }
+    }
+
+    const handleSearchChange = (value) => {
+        setSearchTerm(value);
+        dispatch(updateSearchTerm(value));
     }
 
     return(
@@ -32,6 +39,11 @@ function Todo() {
             </div>
 
             {/* Filter and Search option */}
+            <div className="todo-option-box">
+                <FilterButton />
+                <input value={searchTerm} onChange={(e) => handleSearchChange(e.target.value)} type="text" name="addSearch" id="addSearch" placeholder="Search Todo" className="todo-search"/>
+                <button className="todo-add-button"><BsSearch /></button>
+            </div>
         </div>
     )
 }
