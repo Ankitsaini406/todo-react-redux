@@ -5,6 +5,7 @@ import { BsPlus, BsSearch } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { addTodo, updateSearchTerm } from "../state/actions/actions"
 import FilterButton from "./filterbutton";
+import TodoList from "./todolist";
 
 function Todo() {
 
@@ -44,6 +45,8 @@ function Todo() {
                 <input value={searchTerm} onChange={(e) => handleSearchChange(e.target.value)} type="text" name="addSearch" id="addSearch" placeholder="Search Todo" className="todo-search"/>
                 <button className="todo-add-button"><BsSearch /></button>
             </div>
+
+            <TodoList />
         </div>
     )
 }
